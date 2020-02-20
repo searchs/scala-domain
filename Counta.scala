@@ -1,4 +1,3 @@
-import scala.collection.JavaConverters._
 import scala.collection.mutable.ListBuffer
 import scala.io.StdIn.{readInt, readLine}
 

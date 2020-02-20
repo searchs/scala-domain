@@ -12,7 +12,9 @@ object Counta extends App {
     grab = readLine()
     collectedNums += grab.toInt
     println(collectedNums)
-    println(collectedNums.distinct.sortWith(_ > _).take(4))
+//     println(collectedNums.distinct.sortWith(_ > _).take(4))
+        println(collectedNums.distinct.sorted(Ordering.Int.reverse).take(4))
+
 
   }
 

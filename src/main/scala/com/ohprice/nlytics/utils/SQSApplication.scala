@@ -1,4 +1,4 @@
-package com.ohprice.llytics
+package com.ohprice.nlytics.utils
 
 import java.util
 

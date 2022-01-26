@@ -12,9 +12,8 @@ import org.joda.time.DateTime
 /**
  * My allo world for AWS SQS Queues!
  */
-object SQSApplication {
-  private var credentials = new BasicAWSCredentials("_",
-    "_")
+object SQSApplication with SourceReader {
+  private var credentials = new BasicAWSCredentials("_", "_")
 
   def main(args: Array[String]): Unit = {
     println("=" * 55 + "\n")
@@ -31,8 +30,8 @@ object SQSApplication {
       //            System.out.println(amazonSQS.listQueues());
     }
     else {
-      System.out.println("\nQueue " + newQueueName + " already exists! see the list below.")
-      System.out.println(amazonSQS.getQueueUrl(newQueueName))
+      println("\nQueue " + newQueueName + " already exists! see the list below.")
+      println(amazonSQS.getQueueUrl(newQueueName))
       //            amazonSQS.purgeQueue(new PurgeQueueRequest());
     }
     //        POST MESSAGE

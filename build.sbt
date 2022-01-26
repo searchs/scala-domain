@@ -1,3 +1,4 @@
+import com.sun.org.apache.xml.internal.serialize.OutputFormat.Defaults
 // give the user a nice default project!
 
 lazy val root = (project in file(".")).
@@ -5,13 +6,13 @@ lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.ohprice.nlytics",
-      scalaVersion := "2.12.13"
+      scalaVersion := "2.13.8"
     )),
     name := "groundfloor",
     version := "0.0.1",
 
-    sparkVersion := "3.0.1",
-    sparkComponents := Seq(),
+//    sparkVersion := "3.2.0",
+//    sparkComponents := Seq(),
 
     javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
     javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
@@ -24,21 +25,23 @@ lazy val root = (project in file(".")).
     libraryDependencies ++= Seq(
       "org.apache.spark" %% "spark-streaming" % "3.0.1" % "provided",
       "org.apache.spark" %% "spark-sql" % "3.0.1" % "provided",
-       "commons-io" % "commons-io" % "2.11.0",
+      "commons-io" % "commons-io" % "2.11.0",
+      "com.amazonaws" % "aws-java-sdk-sqs" % "1.12.147",
+      "com.amazonaws" % "aws-java-sdk" % "1.12.147",
 
 
-"org.scalatest" %% "scalatest" % "3.2.2" % "test",
+      "org.scalatest" %% "scalatest" % "3.2.2" % "test",
       "org.scalacheck" %% "scalacheck" % "1.15.2" % "test",
-      "com.holdenkarau" %% "spark-testing-base" % "3.0.1_1.0.0" % "test" 
+      "com.holdenkarau" %% "spark-testing-base" % "3.0.1_1.0.0" % "test"
     ),
 
     // uses compile classpath for the run task, including "provided" jar (cf http://stackoverflow.com/a/21803413/3827)
-    run in Compile := Defaults.runTask(fullClasspath in Compile, mainClass in (Compile, run), runner in (Compile, run)).evaluated,
+//    run in Compile := Defaults.runTask(fullClasspath in Compile, mainClass in(Compile, run), runner in(Compile, run)).evaluated,
 
     scalacOptions ++= Seq("-deprecation", "-unchecked"),
-    pomIncludeRepository := { x => false },
+//    pomIncludeRepository := { x => false },
 
-   resolvers ++= Seq(
+    resolvers ++= Seq(
       "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/",
       "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/",
       "Second Typesafe repo" at "https://repo.typesafe.com/typesafe/maven-releases/",
@@ -48,11 +51,11 @@ lazy val root = (project in file(".")).
     pomIncludeRepository := { _ => false },
 
     // publish settings
-    publishTo := {
-      val nexus = "https://oss.sonatype.org/"
-      if (isSnapshot.value)
-        Some("snapshots" at nexus + "content/repositories/snapshots")
-      else
-        Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-    }
+//    publishTo := {
+//      val nexus = "https://oss.sonatype.org/"
+//      if (isSnapshot.value)
+//        Some("snapshots" at nexus + "content/repositories/snapshots")
+//      else
+//        Some("releases" at nexus + "service/local/staging/deploy/maven2")
+//    }
   )
